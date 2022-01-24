@@ -178,8 +178,8 @@ func UpdateStack(ctx context.Context, d *schema.ResourceData, meta interface{}) 
 	stackID, _ := strconv.ParseInt(d.Id(), 10, 64)
 
 	// The underlying API olnly allows to update the name and description.
-	allowed_changes := []string{"name", "description", "slug"}
-	if d.HasChangesExcept(allowed_changes...) {
+	allowedChanges := []string{"name", "description", "slug"}
+	if d.HasChangesExcept(allowedChanges...) {
 		return diag.Errorf("Error: Only name, slug and description can be updated.")
 	}
 
@@ -268,5 +268,4 @@ func FlattenStack(d *schema.ResourceData, stack gapi.Stack) {
 	d.Set("alertmanager_name", stack.AmInstanceName)
 	d.Set("alertmanager_url", stack.AmInstanceURL)
 	d.Set("alertmanager_status", stack.AmInstanceStatus)
-
 }

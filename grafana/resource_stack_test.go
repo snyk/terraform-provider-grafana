@@ -58,12 +58,12 @@ func testAccStackCheckExists(rn string, a *gapi.Stack) resource.TestCheckFunc {
 		}
 
 		client := testAccProvider.Meta().(*client).gapi
-		stackId, err := client.StackByID(id)
+		stackID, err := client.StackByID(id)
 		if err != nil {
 			return fmt.Errorf("error getting data source: %s", err)
 		}
 
-		*a = stackId
+		*a = stackID
 
 		return nil
 	}
