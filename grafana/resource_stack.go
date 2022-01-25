@@ -246,7 +246,10 @@ func ExistsStack(d *schema.ResourceData, meta interface{}) (bool, error) {
 }
 
 func FlattenStack(d *schema.ResourceData, stack gapi.Stack) {
-	d.Set("namesdfsdsfddf", stack.Name)
+	id := strconv.FormatInt(stack.ID, 10)
+
+	d.SetId(id)
+	d.Set("name", stack.Name)
 	d.Set("slug", stack.Slug)
 	d.Set("url", stack.URL)
 	d.Set("status", stack.Status)
